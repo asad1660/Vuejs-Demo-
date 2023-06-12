@@ -37,18 +37,17 @@
       <template v-slot:extension>
         <v-tabs v-model="tab" align-tabs="title">
           <v-tab v-for="item in items" :key="item" :value="item">
-            {{ item }}
+            <li ><router-link v-bind:to="item.link"> {{item.name}} </router-link></li>
           </v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
 
     <v-window v-model="tab">
-      <v-window-item v-for="item in items" :key="item" :value="item">
+      <v-window-item v-for="item in items" :key="item" :value="item.name">
       </v-window-item>
     </v-window>
   </v-card>
-  {{ isUserAuth }}
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
@@ -60,7 +59,8 @@ export default {
       name: '',
       email: '',
       items: [
-        'web', 'shopping', 'videos', 'images', 'news',
+        {name:'Basic crud',link:'/crud'},
+        {name:'Parent to child',link:'/parent'}
       ],
       userdetail: {}
     }
